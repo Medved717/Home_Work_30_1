@@ -7,23 +7,70 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='User',
+            name="User",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('password', models.CharField(max_length=128, verbose_name='password')),
-                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('email', models.EmailField(help_text='Введите адрес электронной почты.', max_length=100, unique=True, verbose_name='Электронная почта')),
-                ('phone', models.CharField(blank=True, help_text='Введите номер телефона.', max_length=25, null=True, verbose_name='Телефон')),
-                ('city', models.CharField(blank=True, help_text='Введите город проживания', max_length=50, null=True, verbose_name='Город')),
-                ('avatar', models.ImageField(blank=True, help_text='Загрузите аватар.', null=True, upload_to='users/avatar', verbose_name='Аватар')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("password", models.CharField(max_length=128, verbose_name="password")),
+                (
+                    "last_login",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="last login"
+                    ),
+                ),
+                (
+                    "email",
+                    models.EmailField(
+                        help_text="Введите адрес электронной почты.",
+                        max_length=100,
+                        unique=True,
+                        verbose_name="Электронная почта",
+                    ),
+                ),
+                (
+                    "phone",
+                    models.CharField(
+                        blank=True,
+                        help_text="Введите номер телефона.",
+                        max_length=25,
+                        null=True,
+                        verbose_name="Телефон",
+                    ),
+                ),
+                (
+                    "city",
+                    models.CharField(
+                        blank=True,
+                        help_text="Введите город проживания",
+                        max_length=50,
+                        null=True,
+                        verbose_name="Город",
+                    ),
+                ),
+                (
+                    "avatar",
+                    models.ImageField(
+                        blank=True,
+                        help_text="Загрузите аватар.",
+                        null=True,
+                        upload_to="users/avatar",
+                        verbose_name="Аватар",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]
