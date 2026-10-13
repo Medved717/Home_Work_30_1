@@ -1,6 +1,29 @@
 from django.db import models
 
 
+class Course(models.Model):
+    title = models.CharField(
+        max_length=100,
+        verbose_name="Название курса",
+        help_text="Введите название курса.",
+    )
+    preview = models.ImageField(
+        upload_to="educations/media/preview",
+        verbose_name="Изображение курса",
+        help_text="Загрузите изображение урока",
+        blank=True,
+        null=True,
+    )
+    description = models.TextField(
+        verbose_name="Описание", help_text="Введите описание.", blank=True, null=True
+    )
+
+    class Meta:
+        verbose_name = "Курс"
+        verbose_name_plural = "Курсы"
+        ordering = ("title",)
+
+
 class Lesson(models.Model):
     title = models.CharField(
         max_length=100,
@@ -24,38 +47,15 @@ class Lesson(models.Model):
         blank=True,
         null=True,
     )
+    course = models.ForeignKey(
+        Course,
+        verbose_name="Курс",
+        on_delete=models.SET_NULL,
+        related_name="lessons",
+        null=True,
+    )
 
     class Meta:
         verbose_name = "Урок"
         verbose_name_plural = "Уроки"
-        ordering = ("title",)
-
-
-class Course(models.Model):
-    title = models.CharField(
-        max_length=100,
-        verbose_name="Название курса",
-        help_text="Введите название курса.",
-    )
-    preview = models.ImageField(
-        upload_to="educations/media/preview",
-        verbose_name="Изображение курса",
-        help_text="Загрузите изображение урока",
-        blank=True,
-        null=True,
-    )
-    description = models.TextField(
-        verbose_name="Описание", help_text="Введите описание.", blank=True, null=True
-    )
-    lesson = models.ForeignKey(
-        Lesson,
-        verbose_name="Урок",
-        on_delete=models.SET_NULL,
-        related_name="courses",
-        null=True,
-    )
-
-    class Meta:
-        verbose_name = "Курс"
-        verbose_name_plural = "Курсы"
         ordering = ("title",)
